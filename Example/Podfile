@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'NMCollectionView_Example' do
+  pod 'NMCollectionView', :path => '../'
+
+  target 'NMCollectionView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
