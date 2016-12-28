@@ -1,0 +1,6 @@
+framework module NMCollectionView {
+  umbrella header "NMCollectionView-umbrella.h"
+
+  export *
+  module * { export * }
+}

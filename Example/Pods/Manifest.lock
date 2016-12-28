@@ -1,0 +1,24 @@
+PODS:
+  - NMCollectionView (0.0.1):
+    - RZCellSizeManager (~> 1.1.2)
+    - SnapKit (~> 3.0)
+  - RZCellSizeManager (1.1.2):
+    - RZCellSizeManager/Core (= 1.1.2)
+  - RZCellSizeManager/Core (1.1.2)
+  - SnapKit (3.1.2)
+
+DEPENDENCIES:
+  - NMCollectionView (from `../`)
+
+EXTERNAL SOURCES:
+  NMCollectionView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  NMCollectionView: 836b959c5724f5b9913d644e0b1a61fd1dff37c0
+  RZCellSizeManager: 04bd83953cb5a427ae3d9e430045a15ee4789699
+  SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
+
+PODFILE CHECKSUM: 4b4dd8f34200f47035539ec6292c9e463b52e0dd
+
+COCOAPODS: 1.1.1
