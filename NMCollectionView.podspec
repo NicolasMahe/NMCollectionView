@@ -18,6 +18,5 @@ An improved version of UICollectionView.
 
   s.frameworks = 'UIKit'
   s.dependency "SnapKit", "~> 3.0"
-  s.dependency "RZCellSizeManager", "~> 1.1.2"
 
 end

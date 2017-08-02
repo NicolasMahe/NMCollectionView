@@ -7,16 +7,9 @@
 //
 
 import UIKit
-import RZCellSizeManager
 import SnapKit
 
 open class NMCollectionViewController: UICollectionViewController {
-  
-  //----------------------------------------------------------------------------
-  // MARK: - Size manager
-  //----------------------------------------------------------------------------
-  
-  public var sizeManager: RZCellSizeManager?
   
   //----------------------------------------------------------------------------
   // MARK: - Datasource
