@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NMCollectionView'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'Improved UICollectionView'
   s.description      = <<-DESC
 An improved version of UICollectionView.
