@@ -43,7 +43,7 @@ open class NMCollectionViewController: UICollectionViewController {
     guard let dataSource = self.collectionView?.dataSource as? NMCollectionViewDataSource,
       let cell = self.collectionView?.cellForItem(at: indexPath) as? NMCollectionViewCell
     else { return }
-    dataSource.cellsData[indexPath.section].didSelect(
+    dataSource.cellsData[indexPath.section].cellData(for: indexPath).didSelect(
       cell,
       collectionView,
       indexPath

@@ -45,8 +45,11 @@ open class NMCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     super.init()
     
     self.collectionViewController = collectionViewController
-    data.forEach {
-      collectionViewController.registerCell($0.cellClass)
+    data.forEach { (cellData: NMCollectionViewCellData) in
+      collectionViewController.registerCell(cellData.cellClass)
+      if let extraCells = cellData.extraCells {
+        collectionViewController.registerCell(extraCells.cellClass)
+      }
     }
   }
   
@@ -59,12 +62,13 @@ open class NMCollectionViewDataSource: NSObject, UICollectionViewDataSource {
   }
   
   public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return self.cellsData[section].numberOfItems()
+    let cellData = self.cellsData[section]
+    return cellData.numberOfItems() + (cellData.extraCells?.numberOfItems() ?? 0)
   }
 
   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-    let cellData = self.cellsData[indexPath.section]
+    let cellData = self.cellsData[indexPath.section].cellData(for: indexPath)
     
     let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: cellData.cellClass.identifier,
