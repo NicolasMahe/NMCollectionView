@@ -19,4 +19,24 @@ open class NMCollectionViewCell: UICollectionViewCell {
   public weak var collectionViewController: NMCollectionViewController?
   public var indexPath: IndexPath?
   
+  //----------------------------------------------------------------------------
+  // MARK: - Helper
+  //----------------------------------------------------------------------------
+  
+  /**
+   Return the index of the cell by additionning all rows in previous sections
+   */
+  public var absoluteIndex: Int? {
+    guard
+      let indexPath = self.indexPath
+      else { return nil }
+    var rowsInPreviousSection = 0
+    if indexPath.section > 0 {
+      rowsInPreviousSection = (0...indexPath.section - 1).reduce(0) { (rows: Int, section: Int) -> Int in
+        return rows + (self.collectionViewController?.collectionView?.numberOfItems(inSection: section) ?? 0)
+      }
+    }
+    return rowsInPreviousSection + indexPath.row
+  }
+  
 }

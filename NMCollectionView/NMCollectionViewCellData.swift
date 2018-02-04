@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import PromiseKit
 
 open class NMCollectionViewCellData {
 
   public var numberOfItems: () -> Int
   public var cellClass: NMCollectionViewCell.Type
-  var config: (_ cell: NMCollectionViewCell, _ indexPath: IndexPath) -> Void
-  var didSelect: (_ cell: NMCollectionViewCell, _ collectionView: UICollectionView, _ indexPath: IndexPath) -> Void
+  public var config: (_ cell: NMCollectionViewCell, _ indexPath: IndexPath) -> Void
+  public var didSelect: (_ cell: NMCollectionViewCell, _ collectionView: UICollectionView, _ indexPath: IndexPath) -> Void
   public var extraCells: NMCollectionViewCellData?
   
   /**
@@ -21,7 +22,7 @@ open class NMCollectionViewCellData {
    */
   public init<T: NMCollectionViewCell>(
     cellClass: T.Type,
-    numberOfItems: @escaping () -> Int,
+    numberOfItems: @escaping (() -> Int) = { (_) -> Int in return 1 },
     config: ((_ cell: T, _ indexPath: IndexPath) -> Void)? = nil,
     didSelect: ((_ cell: T, _ collectionView: UICollectionView, _ indexPath: IndexPath) -> Void)? = nil,
     extraCells: NMCollectionViewCellData? = nil
@@ -29,12 +30,10 @@ open class NMCollectionViewCellData {
     self.cellClass = cellClass
     self.numberOfItems = numberOfItems
     self.extraCells = extraCells
-    
     self.config = { (cell: NMCollectionViewCell, indexPath: IndexPath) -> Void in
       let cell = cell as! T
       config?(cell, indexPath)
     }
-    
     self.didSelect = { (cell: NMCollectionViewCell, collectionView: UICollectionView, indexPath: IndexPath) -> Void in
       let cell = cell as! T
       didSelect?(cell, collectionView, indexPath)
@@ -48,6 +47,14 @@ open class NMCollectionViewCellData {
       return extraCells
     }
     return self
+  }
+  
+  /**
+   This function force the data to be refreshed.
+   Nothing to do is this class
+   */
+  open func reloadData() -> Promise<Void> {
+    return Promise(value: ())
   }
 
 }
